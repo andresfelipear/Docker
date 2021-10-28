@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content%}
 
-<h1>Home Page</h1>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7 text-center">
+        <img src="{% static 'img1.gif'%}" width="400" height="400" alt="igm1" class="d-inline-block align-top">
+    
+        <br><br>
+        <h1>Welcome to TodoList</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit repudiandae atque excepturi, velit magnam commodi quam. Quos vitae a cupiditate ex nemo maiores aliquam illo, nobis placeat similique sequi eveniet.</p>
+        <a href="{% url 'signupuser' %}" class="btn btn-primary btn-lg"> Start</a>
+    </div>
+</div>
 
 {% endblock%}

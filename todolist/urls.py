@@ -23,11 +23,20 @@ urlpatterns = [
 
     #auth
     path("signup/", views.signupuser, name='signupuser'),
-    path("logoutuser", views.logoutuser, name="logoutuser"),    
-    path('login', views.loginuser, name="loginuser"),
+    path("logoutuser/", views.logoutuser, name="logoutuser"),    
+    path('login/', views.loginuser, name="loginuser"),
     
     #todos
     
-    path('current/', views.currenttodos, name='currenttodos')
+    path('current/', views.currenttodos, name='currenttodos'),
+    path('create/', views.createtodos, name='createtodos'),
+    path('completed/', views.completedtodos, name='completedtodos'),
+    #<int:tod_id> representation of todo's id or primary key
+    path('todo/<int:todo_id>', views.viewtodo, name='viewtodo'),
+    path('todo/<int:todo_id>/complete', views.completetodo, name='completetodo'),
+    path('todo/<int:todo_id>/delete',views.deletetodo, name="deletetodo"),
+    
     
 ]
+
+handler404 = views.handler404

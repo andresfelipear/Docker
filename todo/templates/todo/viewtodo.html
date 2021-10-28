@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2>View/Update Todo</h2>
+    </div>
+</div>
+
+
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        {% if errMsg %}
+        <div class="alert alert-danger">
+            {{errMsg}}
+        </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token%}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input required type="text" class="form-control" name="title" id="title" value="{{todo.title}}">
+            </div>
+
+            <div class="form-group">
+                <label for="memo">Memo</label>
+                <textarea class="form-control" name="memo" id="memo">{{todo.memo}}</textarea>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" class="form-check-input" name="important" id="important" {%if todo.important %} checked {% endif %}>
+                <label class="form-check-label" for="important"> Important</label>
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button id="completeMain" class="btn btn-success" type="button">Complete</button>
+            <button id="deleteMain" class="btn btn-danger" type="button">Delete</button>
+        </form>
+    </div>
+</div>
+
+
+
+<form style="display: none;" action="{% url 'completetodo' todo.id %}" method="POST">
+    {% csrf_token %}
+    <button  type="submit" id="complete">Complete</button>
+</form>
+
+<form style="display: none;" action="{% url 'deletetodo' todo.id %}" method="POST">
+    {% csrf_token %}
+    <button  type="submit" id="delete">Delete</button>
+</form>
+
+<script src="../../static/main.js"></script>
+
+{% endblock %}

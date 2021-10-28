@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        <h2>Completed Todos</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+        {% if todos%}
+            <div class="list-group">
+                {% for todo in todos%}
+                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action {% if todo.important%} list-group-item-danger{% endif %}">
+                        <b>{{todo.title}}</b> - Completed on <i>{{todo.datecompleted|date:'M Y H:i'}}</i>
+                    </a>
+                {% endfor%}
+            </div>
+        {% else%}
+            <div class="text-center">
+                <h2>Looks like you don't have completed todos!</h2>
+                <br>
+                <a href="{% url 'currenttodos' %} " class="btn btn-primary">Current Todos</a>
+            </div>
+        {% endif%}
+    </div>
+
+</div>
+
+{% endblock %}
